@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricilla Bilavendran — QA Leader, Speaker & Mentor</title>
+  <meta name="description" content="Pricilla Bilavendran is a QA leader, international speaker, Postman Supernova, AWS Community Builder, and mentor making software worth trusting." />
+  <meta property="og:title" content="Pricilla Bilavendran — QA Leader, Speaker & Mentor" />
+  <meta property="og:description" content="Making Software Worth Trusting. QA leader, speaker, and mentor sharing the journey of software testing." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── RESET & BASE ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      background: #ffffff;
+      color: #0f0a14;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    /* ── DESIGN TOKENS ──────────────────────────────────────── */
+    :root {
+      --ink:       #0f0a14;
+      --paper:     #ffffff;
+      --paper-2:   #faf5ff;
+      --accent:    #6B21A8;          /* brand purple */
+      --accent-2:  #E91E8C;          /* brand pink */
+      --muted:     rgba(15,10,20,0.48);
+      --muted-2:   rgba(107,33,168,0.06);
+      --border:    rgba(107,33,168,0.12);
+      --border-2:  rgba(107,33,168,0.22);
+      --serif:     'DM Serif Display', Georgia, serif;
+      --sans:      'DM Sans', sans-serif;
+      --radius:    12px;
+      --radius-lg: 20px;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ──────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.5;
+    }
+
+    /* ── TYPOGRAPHY ─────────────────────────────────────────── */
+    .serif { font-family: var(--serif); }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.15; }
+    h1 { font-size: clamp(3rem, 7vw, 6rem); }
+    h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
+    h3 { font-size: 1.4rem; }
+    p { font-size: 1rem; line-height: 1.75; color: var(--muted); }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    /* ── LAYOUT HELPERS ─────────────────────────────────────── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .section {
+      padding: 7rem 0;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* ── REVEAL ANIMATION ───────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s cubic-bezier(.16,1,.3,1), transform 0.75s cubic-bezier(.16,1,.3,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ═══════════════════════════════════════════════════════════
+       01 · NAV
+    ═══════════════════════════════════════════════════════════ */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.25rem 0;
+      transition: background 0.4s, border-color 0.4s, backdrop-filter 0.4s;
+      border-bottom: 1px solid transparent;
+    }
+    #nav.scrolled {
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(16px);
+      border-color: var(--border);
+      box-shadow: 0 1px 24px rgba(107,33,168,0.08);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      text-decoration: none;
+      line-height: 1;
+    }
+    .nav-logo svg {
+      display: block;
+      flex-shrink: 0;
+    }
+    .nav-logo .wordmark {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      color: var(--ink);
+      line-height: 1;
+      letter-spacing: 0.01em;
+    }
+    .nav-logo .wordmark span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #ffffff;
+      background: var(--accent-2);
+      padding: 0.55rem 1.4rem;
+      border-radius: 100px;
+      transition: opacity 0.2s, transform 0.2s;
+      letter-spacing: 0.02em;
+    }
+    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      width: 26px;
+      cursor: pointer;
+    }
+    .nav-toggle span {
+      display: block;
+      height: 1.5px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       02 · HERO
+    ═══════════════════════════════════════════════════════════ */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 8rem 0 6rem;
+      background: linear-gradient(135deg, #ffffff 60%, #fdf0ff 100%);
+    }
+
+    /* ambient glow */
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      right: -5%;
+      width: 55%;
+      height: 70%;
+      background: radial-gradient(ellipse at center, rgba(107,33,168,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -10%;
+      left: -5%;
+      width: 40%;
+      height: 60%;
+      background: radial-gradient(ellipse at center, rgba(233,30,140,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(107,33,168,0.25);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    .hero-headline {
+      font-size: clamp(3.2rem, 6.5vw, 5.8rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .hero-headline em {
+      font-style: italic;
+      color: var(--accent-2);
+    }
+    .hero-sub {
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      max-width: 480px;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 3.5rem;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-2);
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.9rem 1.8rem;
+      border-radius: 100px;
+      letter-spacing: 0.02em;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--ink);
+      font-size: 0.9rem;
+      font-weight: 400;
+      padding: 0.9rem 1.8rem;
+      border-radius: 100px;
+      border: 1px solid rgba(107,33,168,0.3);
+      letter-spacing: 0.02em;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .btn-outline:hover {
+      background: rgba(107,33,168,0.05);
+      border-color: rgba(107,33,168,0.4);
+      transform: translateY(-2px);
+    }
+
+    .hero-socials {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+    }
+    .hero-socials a {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .hero-socials a:hover { color: var(--accent); }
+    .hero-socials a svg { width: 15px; height: 15px; opacity: 0.7; }
+
+    /* hero photo */
+    .hero-photo-wrap {
+      position: relative;
+    }
+    .hero-photo-frame {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      background: #ede0f7;
+      border: 1px solid var(--border);
+    }
+    .hero-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: grayscale(15%) contrast(1.05);
+    }
+    .hero-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    .hero-photo-placeholder svg { width: 48px; height: 48px; opacity: 0.3; }
+
+    /* floating card on photo */
+    .hero-float-card {
+      position: absolute;
+      bottom: -1.5rem;
+      left: -2rem;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius);
+      padding: 1rem 1.4rem;
+      min-width: 200px;
+      box-shadow: 0 8px 32px rgba(107,33,168,0.12);
+    }
+    .hero-float-card .stat { font-family: var(--serif); font-size: 1.8rem; color: var(--ink); }
+    .hero-float-card .stat-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* accent line top-right of photo */
+    .hero-accent-line {
+      position: absolute;
+      top: -1.5rem;
+      right: -1.5rem;
+      width: 80px;
+      height: 80px;
+      border-top: 2px solid var(--accent);
+      border-right: 2px solid var(--accent);
+      border-radius: 0 var(--radius) 0 0;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       DIVIDER
+    ═══════════════════════════════════════════════════════════ */
+    .divider {
+      width: 100%;
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* scrolling ticker */
+    .ticker-wrap {
+      overflow: hidden;
+      padding: 1.2rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: rgba(107,33,168,0.05);
+    }
+    .ticker-track {
+      display: flex;
+      gap: 0;
+      animation: ticker 28s linear infinite;
+      white-space: nowrap;
+    }
+    .ticker-item {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 0 2rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .ticker-dot {
+      width: 4px; height: 4px;
+      background: var(--accent-2);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       03 · ABOUT
+    ═══════════════════════════════════════════════════════════ */
+    #about { background: #faf5ff; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .about-quote {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      line-height: 1.35;
+      font-style: italic;
+      color: var(--accent);
+      position: relative;
+      padding-left: 1.8rem;
+    }
+    .about-quote::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.2em;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--accent), var(--accent-2), transparent);
+      border-radius: 2px;
+    }
+
+    .about-attribution {
+      margin-top: 1.2rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+    }
+
+    .about-facts { display: flex; flex-direction: column; gap: 1.5rem; }
+    .fact-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .fact-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .fact-num {
+      font-family: var(--serif);
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-top: 0.1rem;
+      flex-shrink: 0;
+      width: 1.5rem;
+    }
+    .fact-text { font-size: 0.95rem; color: var(--muted); line-height: 1.6; }
+    .fact-text strong { color: var(--ink); font-weight: 500; }
+
+    /* ═══════════════════════════════════════════════════════════
+       04 · EXPERTISE
+    ═══════════════════════════════════════════════════════════ */
+    #expertise { background: #ffffff; }
+
+    .expertise-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 4rem;
+    }
+
+    .expertise-card {
+      background: rgba(107,33,168,0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+      cursor: default;
+    }
+    .expertise-card:hover {
+      background: rgba(107,33,168,0.05);
+      border-color: rgba(107,33,168,0.2);
+      transform: translateY(-4px);
+    }
+    .expertise-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: rgba(107,33,168,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .expertise-icon svg { width: 22px; height: 22px; stroke: var(--accent); fill: none; stroke-width: 1.5; }
+    .expertise-card h3 { font-size: 1.15rem; color: var(--accent); font-family: var(--serif); }
+    .expertise-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; flex: 1; }
+    .expertise-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(107,33,168,0.08);
+      border: 1px solid rgba(107,33,168,0.15);
+      padding: 0.25rem 0.7rem;
+      border-radius: 100px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       05 · SPEAKING
+    ═══════════════════════════════════════════════════════════ */
+    #speaking { background: #fdf5ff; }
+
+    .speaking-upcoming {
+      background: rgba(233,30,140,0.05);
+      border: 1px solid rgba(233,30,140,0.2);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-bottom: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .speaking-upcoming::before {
+      content: 'UPCOMING';
+      position: absolute;
+      top: 1.2rem; right: 1.5rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      color: var(--accent-2);
+      font-weight: 500;
+    }
+    .speaking-upcoming::after {
+      content: '';
+      position: absolute;
+      top: -30%; right: -5%;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(233,30,140,0.06) 0%, transparent 70%);
+    }
+    .upcoming-meta { flex: 1; }
+    .upcoming-conf { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-2); margin-bottom: 0.5rem; }
+    .upcoming-title { font-family: var(--serif); font-size: clamp(1.1rem, 2vw, 1.5rem); color: var(--ink); margin-bottom: 0.75rem; line-height: 1.3; }
+    .upcoming-details { font-size: 0.85rem; color: var(--muted); display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .upcoming-details span { display: flex; align-items: center; gap: 0.4rem; }
+
+    .year-filter {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+    .year-btn {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: var(--sans);
+    }
+    .year-btn:hover, .year-btn.active {
+      color: var(--ink);
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .talks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .talk-card {
+      background: rgba(107,33,168,0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .talk-card:hover { border-color: var(--border-2); background: rgba(107,33,168,0.04); }
+    .talk-conf { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-2); font-weight: 500; }
+    .talk-title { font-size: 0.95rem; color: var(--ink); line-height: 1.4; font-weight: 400; }
+    .talk-meta { font-size: 0.78rem; color: var(--muted); margin-top: auto; }
+    .talk-link {
+      font-size: 0.75rem;
+      color: var(--accent-2);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-top: 0.5rem;
+      transition: gap 0.2s;
+    }
+    .talk-link:hover { gap: 0.6rem; }
+
+    /* ═══════════════════════════════════════════════════════════
+       06 · ACHIEVEMENTS
+    ═══════════════════════════════════════════════════════════ */
+    #achievements { background: #faf5ff; }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(107,33,168,0.1);
+      border: 1px solid rgba(107,33,168,0.1);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 5rem;
+    }
+    .stat-cell {
+      background: #ffffff;
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .stat-cell:hover { background: rgba(107,33,168,0.05); }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 3rem;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .stat-num span { color: var(--accent-2); }
+    .stat-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.4; }
+
+    .awards-list { display: flex; flex-direction: column; gap: 0; }
+    .award-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      padding: 1.6rem 0;
+      border-bottom: 1px solid var(--border);
+      gap: 2rem;
+    }
+    .award-item:first-child { border-top: 1px solid var(--border); }
+    .award-name { font-size: 1rem; color: var(--ink); font-weight: 400; }
+    .award-sub { font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; }
+    .award-year { font-family: var(--serif); font-size: 1.1rem; color: var(--accent-2); flex-shrink: 0; }
+
+    /* ═══════════════════════════════════════════════════════════
+       07 · CONTENT HUB
+    ═══════════════════════════════════════════════════════════ */
+    #content { background: #ffffff; }
+
+    .content-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+    .tab-btn {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--muted);
+      padding: 0.85rem 1.6rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      font-family: var(--sans);
+      letter-spacing: 0.03em;
+      margin-bottom: -1px;
+    }
+    .tab-btn:hover { color: var(--ink); }
+    .tab-btn.active { color: var(--ink); border-bottom-color: var(--accent); }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .blog-layout {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2rem;
+    }
+    .blog-featured {
+      background: rgba(107,33,168,0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .blog-featured:hover { border-color: var(--border-2); }
+    .blog-featured-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, rgba(107,33,168,0.1) 0%, rgba(233,30,140,0.08) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    .blog-featured-body { padding: 2rem; }
+    .blog-featured-body .tag { margin-bottom: 1rem; display: inline-block; }
+    .blog-featured-body h3 { font-size: 1.4rem; color: var(--ink); margin-bottom: 0.75rem; line-height: 1.3; }
+    .blog-featured-body p { font-size: 0.88rem; color: var(--muted); }
+    .blog-featured-body .read-meta { margin-top: 1.2rem; font-size: 0.75rem; color: var(--muted); display: flex; gap: 1rem; }
+
+    .blog-list { display: flex; flex-direction: column; gap: 1rem; }
+    .blog-list-item {
+      background: rgba(107,33,168,0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .blog-list-item:hover { border-color: var(--border-2); background: rgba(107,33,168,0.04); }
+    .blog-list-item .tag { margin-bottom: 0.5rem; display: inline-block; }
+    .blog-list-item h3 { font-size: 0.95rem; color: var(--ink); line-height: 1.4; font-family: var(--sans); font-weight: 400; }
+    .blog-list-item .read-meta { margin-top: 0.6rem; font-size: 0.72rem; color: var(--muted); }
+
+    .newsletter-strip {
+      margin-top: 3.5rem;
+      background: rgba(107,33,168,0.05);
+      border: 1px solid rgba(107,33,168,0.15);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .newsletter-strip h3 { font-size: 1.3rem; color: var(--accent); font-family: var(--serif); margin-bottom: 0.3rem; }
+    .newsletter-strip p { font-size: 0.85rem; color: var(--muted); }
+    .newsletter-form {
+      display: flex;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
+    .newsletter-form input {
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      color: var(--ink);
+      background: rgba(107,33,168,0.04);
+      border: 1px solid var(--border-2);
+      border-radius: 100px;
+      padding: 0.7rem 1.4rem;
+      width: 240px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .newsletter-form input:focus { border-color: var(--accent); }
+    .newsletter-form input::placeholder { color: var(--muted); }
+    .newsletter-form button {
+      background: var(--accent-2);
+      color: #ffffff;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.7rem 1.4rem;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+    .newsletter-form button:hover { opacity: 0.88; }
+
+    /* courses / resources tab */
+    .courses-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .course-card {
+      background: rgba(107,33,168,0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: border-color 0.2s;
+    }
+    .course-card:hover { border-color: var(--border-2); }
+    .course-card .tag { display: inline-block; }
+    .course-card h3 { font-size: 1rem; color: var(--ink); font-family: var(--sans); font-weight: 400; line-height: 1.4; }
+    .course-card p { font-size: 0.83rem; color: var(--muted); flex: 1; }
+
+    /* ═══════════════════════════════════════════════════════════
+       08 · CONTACT
+    ═══════════════════════════════════════════════════════════ */
+    #contact { background: #fdf5ff; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .contact-card {
+      background: rgba(107,33,168,0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    }
+    .contact-card:hover {
+      background: rgba(107,33,168,0.05);
+      border-color: rgba(107,33,168,0.18);
+      transform: translateY(-3px);
+    }
+    .contact-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: rgba(107,33,168,0.08);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .contact-icon svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; stroke-width: 1.5; }
+    .contact-card h3 { font-size: 1.1rem; color: var(--accent); font-family: var(--serif); }
+    .contact-card p { font-size: 0.85rem; color: var(--muted); flex: 1; }
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      color: var(--accent);
+      transition: gap 0.2s;
+    }
+    .contact-link:hover { gap: 0.7rem; }
+
+    .contact-bottom {
+      margin-top: 5rem;
+      padding-top: 4rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .contact-headline {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 4rem);
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .contact-headline em { color: var(--accent); font-style: italic; }
+    .contact-sub { font-size: 0.95rem; color: var(--muted); margin-bottom: 2rem; }
+    .contact-email-link {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--accent-2);
+      border-bottom: 1px solid rgba(233,30,140,0.35);
+      padding-bottom: 0.1rem;
+      transition: border-color 0.2s;
+    }
+    .contact-email-link:hover { border-color: var(--accent); }
+
+    /* ═══════════════════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════════════════ */
+    footer {
+      background: #0f0a14;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 2.5rem 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      transition: color 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .footer-links a:hover { color: #ffffff; }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-photo-wrap { max-width: 400px; }
+      .hero-float-card { left: -0.5rem; bottom: -1rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 3.5rem; }
+      .grid-4, .talks-grid, .courses-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .blog-layout { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .newsletter-strip { flex-direction: column; }
+      .newsletter-form { width: 100%; }
+      .newsletter-form input { flex: 1; width: auto; }
+      .expertise-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-toggle { display: flex; }
+    }
+    @media (max-width: 600px) {
+      .section { padding: 5rem 0; }
+      .grid-4, .talks-grid, .courses-grid { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .hero-actions { flex-direction: column; }
+      .btn-primary, .btn-outline { text-align: center; justify-content: center; }
+      .speaking-upcoming { flex-direction: column; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    /* mobile nav */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,0.98);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: var(--ink);
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+    .mobile-menu a:hover { opacity: 1; }
+    .mobile-close {
+      position: absolute;
+      top: 1.5rem; right: 2rem;
+      font-size: 2rem;
+      color: var(--ink);
+      opacity: 0.4;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── MOBILE MENU ─────────────────────────────────────── -->
+<div class="mobile-menu" id="mobileMenu">
+  <span class="mobile-close" onclick="closeMobileMenu()">✕</span>
+  <a href="#about" onclick="closeMobileMenu()">About</a>
+  <a href="#expertise" onclick="closeMobileMenu()">Expertise</a>
+  <a href="#speaking" onclick="closeMobileMenu()">Speaking</a>
+  <a href="#content" onclick="closeMobileMenu()">Content</a>
+  <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+</div>
+
+<!-- ─── 01 NAV ──────────────────────────────────────────── -->
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">
+      <svg width="34" height="34" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- P — purple left -->
+        <line x1="22" y1="20" x2="22" y2="78" stroke="#6B21A8" stroke-width="9" stroke-linecap="round"/>
+        <path d="M22 20 Q36 20 44 20 Q56 20 56 34 Q56 48 44 48 Q33 48 22 48" stroke="#6B21A8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M22 72 Q20 82 13 82" stroke="#6B21A8" stroke-width="9" stroke-linecap="round" fill="none"/>
+        <!-- B — pink right -->
+        <line x1="63" y1="20" x2="63" y2="78" stroke="#E91E8C" stroke-width="9" stroke-linecap="round"/>
+        <path d="M63 20 Q74 20 80 20 Q88 20 88 31 Q88 42 80 43 Q74 44 63 44" stroke="#E91E8C" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M63 44 Q75 44 82 45 Q91 46 91 59 Q91 78 80 78 Q72 78 63 78" stroke="#E91E8C" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <span class="wordmark">Pricilla<span>.</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#speaking">Speaking</a></li>
+      <li><a href="#content">Content</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Let's connect</a>
+    <div class="nav-toggle" onclick="openMobileMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── 02 HERO ─────────────────────────────────────────── -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <!-- left -->
+      <div>
+        <div class="hero-badge reveal">QA Leader · International Speaker · Mentor</div>
+        <h1 class="hero-headline reveal reveal-delay-1">
+          Making<br>Software<br><em>Worth<br>Trusting.</em>
+        </h1>
+        <p class="hero-sub reveal reveal-delay-2">
+          I'm Pricilla — a software quality advocate, speaker, and Postman Supernova sharing everything I've learned on the journey of making software actually work.
+        </p>
+        <div class="hero-actions reveal reveal-delay-3">
+          <a href="#contact" class="btn-primary">
+            Invite me to speak
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="https://pricillabilavendran.com" target="_blank" class="btn-outline">Read my blog</a>
+        </div>
+        <div class="hero-socials reveal reveal-delay-4">
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/pricilla-bilavendran/" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <!-- Twitter -->
+          <a href="https://twitter.com/PricillaBelwin" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+            Twitter
+          </a>
+          <!-- YouTube -->
+          <a href="https://www.youtube.com/@pricillabilavendran" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#ffffff"/></svg>
+            YouTube
+          </a>
+          <!-- Medium -->
+          <a href="https://bpricilla.medium.com/" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.846 6.887a.923.923 0 0 1-.303-.888l2.585-3.302A.923.923 0 0 1 5.9 2.5h12.15a.923.923 0 0 1 .754.39l2.585 3.302a.923.923 0 0 1-.303.888L13.538 15.5a.923.923 0 0 1-1.077 0L2.846 6.887zM12 21.5a.923.923 0 0 1-.923-.923V16.5h1.846v4.077A.923.923 0 0 1 12 21.5z"/></svg>
+            Medium
+          </a>
+        </div>
+      </div>
+
+      <!-- right: photo -->
+      <div class="hero-photo-wrap reveal reveal-delay-2">
+        <div class="hero-accent-line"></div>
+        <div class="hero-photo-frame">
+          <!-- Replace src with actual photo -->
+          <div class="hero-photo-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Add profile photo here</span>
+            <span style="font-size:0.7rem;opacity:0.5">Replace in index.html</span>
+          </div>
+        </div>
+        <div class="hero-float-card">
+          <div class="stat">50+</div>
+          <div class="stat-label">Talks worldwide</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ticker -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <!-- First set -->
+    <div class="ticker-item"><span>Postman Supernova</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span>AWS Community Builder</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span>Globant Women That Build Award</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span>WomenTech Mentor of the Year Nominee</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span>Postman Community Spotlight</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span>SOFTECAsia 2025 Speaker</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span>Synapse QA Letter of Love Winner</span><span class="ticker-dot"></span></div>
+    <!-- Duplicate for seamless loop -->
+    <div class="ticker-item"><span>Postman Supernova</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span>AWS Community Builder</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span>Globant Women That Build Award</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span>WomenTech Mentor of the Year Nominee</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span>Postman Community Spotlight</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span>SOFTECAsia 2025 Speaker</span><span class="ticker-dot"></span></div>
+    <div class="ticker-item"><span>Synapse QA Letter of Love Winner</span><span class="ticker-dot"></span></div>
+  </div>
+</div>
+
+<!-- ─── 03 ABOUT ─────────────────────────────────────────── -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <span class="section-label reveal">About me</span>
+        <blockquote class="about-quote reveal reveal-delay-1">
+          "Your motivation lies between what you already have and what you want to achieve."
+        </blockquote>
+        <p class="about-attribution reveal reveal-delay-2">— Pricilla Bilavendran</p>
+        <p class="reveal reveal-delay-2" style="margin-top:2rem;">
+          I've been testing software for over a decade — not just finding bugs, but championing the culture of quality. I believe great QA is invisible: when done right, users never know we existed.
+        </p>
+        <p class="reveal reveal-delay-3" style="margin-top:1rem;">
+          Today I speak at global conferences, build communities, and mentor the next generation of testers — especially women breaking into tech.
+        </p>
+      </div>
+
+      <div class="about-facts">
+        <span class="section-label reveal">At a glance</span>
+        <div class="fact-item reveal reveal-delay-1">
+          <span class="fact-num">01</span>
+          <p class="fact-text"><strong>10+ years</strong> in software testing — from manual QA to AI-assisted automation</p>
+        </div>
+        <div class="fact-item reveal reveal-delay-2">
+          <span class="fact-num">02</span>
+          <p class="fact-text"><strong>Postman Supernova &amp; AWS Community Builder</strong> — recognised for technical community leadership</p>
+        </div>
+        <div class="fact-item reveal reveal-delay-2">
+          <span class="fact-num">03</span>
+          <p class="fact-text">Specialises in <strong>API testing, GenAI for QA, and automation strategy</strong></p>
+        </div>
+        <div class="fact-item reveal reveal-delay-3">
+          <span class="fact-num">04</span>
+          <p class="fact-text">Active <strong>mentor</strong> on Mentoring Club and across global testing communities</p>
+        </div>
+        <div class="fact-item reveal reveal-delay-3">
+          <span class="fact-num">05</span>
+          <p class="fact-text">Open to <strong>speaking, training, mentoring</strong>, and collaboration worldwide</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 04 EXPERTISE ─────────────────────────────────────── -->
+<section id="expertise" class="section">
+  <div class="container">
+    <div class="expertise-header">
+      <div>
+        <span class="section-label reveal">Expertise</span>
+        <h2 class="reveal reveal-delay-1">What I do best</h2>
+      </div>
+    </div>
+    <div class="grid-4">
+      <div class="expertise-card reveal">
+        <div class="expertise-icon">
+          <svg viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+        </div>
+        <h3>API & Automation Testing</h3>
+        <p>Deep expertise in REST API testing, contract testing, and building scalable automation frameworks from scratch.</p>
+        <div class="expertise-tags">
+          <span class="tag">Postman</span>
+          <span class="tag">REST</span>
+          <span class="tag">Contract</span>
+        </div>
+      </div>
+      <div class="expertise-card reveal reveal-delay-1">
+        <div class="expertise-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93V18c0-.55.45-1 1-1s1 .45 1 1v1.93c-3.95-.49-7-3.85-7-7.93 0-.55.45-1 1-1s1 .45 1 1c0 2.97 1.77 5.54 4.34 6.73z" fill-rule="nonzero" fill="none" stroke="var(--accent)" stroke-width="1.5"/></svg>
+        </div>
+        <h3>GenAI for Software Testing</h3>
+        <p>Leveraging generative AI and prompt engineering to build smarter, faster, and more intelligent QA workflows.</p>
+        <div class="expertise-tags">
+          <span class="tag">Prompt Eng.</span>
+          <span class="tag">AI-QA</span>
+          <span class="tag">GenAI</span>
+        </div>
+      </div>
+      <div class="expertise-card reveal reveal-delay-2">
+        <div class="expertise-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Speaking & Training</h3>
+        <p>Delivering keynotes, workshops, and sessions at global conferences — from beginner bootcamps to enterprise training.</p>
+        <div class="expertise-tags">
+          <span class="tag">Keynotes</span>
+          <span class="tag">Workshops</span>
+          <span class="tag">Training</span>
+        </div>
+      </div>
+      <div class="expertise-card reveal reveal-delay-3">
+        <div class="expertise-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Mentoring & Community</h3>
+        <p>Building the next generation of quality engineers — with a focus on women in tech and emerging QA professionals.</p>
+        <div class="expertise-tags">
+          <span class="tag">Mentoring</span>
+          <span class="tag">Women in Tech</span>
+          <span class="tag">AWS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 05 SPEAKING ───────────────────────────────────────── -->
+<section id="speaking" class="section">
+  <div class="container">
+    <span class="section-label reveal">Talks &amp; conferences</span>
+    <h2 class="reveal reveal-delay-1" style="margin-bottom:3rem;">Speaking around<br>the world</h2>
+
+    <!-- upcoming -->
+    <div class="speaking-upcoming reveal reveal-delay-1">
+      <div class="upcoming-meta">
+        <p class="upcoming-conf">SOFTECAsia 2025</p>
+        <h3 class="upcoming-title">PromptCraft for Test Engineers: Leveraging GenAI for Smarter Software Testing</h3>
+        <div class="upcoming-details">
+          <span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Sep 9–10, 2025
+          </span>
+          <span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Kuala Lumpur Convention Centre, Malaysia
+          </span>
+        </div>
+      </div>
+      <a href="https://mstb.org/softecasia2025/" target="_blank" class="btn-outline" style="flex-shrink:0;font-size:0.82rem;padding:0.7rem 1.4rem;">
+        Event details →
+      </a>
+    </div>
+
+    <!-- year filter -->
+    <div class="year-filter reveal">
+      <button class="year-btn active" onclick="filterTalks('all')">All</button>
+      <button class="year-btn" onclick="filterTalks('2024')">2024</button>
+      <button class="year-btn" onclick="filterTalks('2023')">2023</button>
+      <button class="year-btn" onclick="filterTalks('2022')">2022</button>
+      <button class="year-btn" onclick="filterTalks('2021')">2021</button>
+    </div>
+
+    <!-- talks grid -->
+    <div class="talks-grid" id="talksGrid">
+      <!-- 2024 -->
+      <div class="talk-card reveal" data-year="2024">
+        <p class="talk-conf">TestCon Europe 2024</p>
+        <p class="talk-title">AI-Powered Testing: From Scripts to Agents</p>
+        <p class="talk-meta">Vilnius, Lithuania · 2024</p>
+        <a href="https://pricillabilavendran.com/my-talks/2024-2/" target="_blank" class="talk-link">Watch talk →</a>
+      </div>
+      <div class="talk-card reveal reveal-delay-1" data-year="2024">
+        <p class="talk-conf">Quality Bits Podcast</p>
+        <p class="talk-title">GenAI &amp; the Future of Quality Engineering</p>
+        <p class="talk-meta">Online · 2024</p>
+        <a href="https://pricillabilavendran.com/my-talks/2024-2/" target="_blank" class="talk-link">Listen →</a>
+      </div>
+      <div class="talk-card reveal reveal-delay-2" data-year="2024">
+        <p class="talk-conf">AWS Community Day</p>
+        <p class="talk-title">Smarter Testing on the Cloud</p>
+        <p class="talk-meta">India · 2024</p>
+        <a href="https://pricillabilavendran.com/my-talks/2024-2/" target="_blank" class="talk-link">Watch talk →</a>
+      </div>
+      <!-- 2023 -->
+      <div class="talk-card reveal" data-year="2023">
+        <p class="talk-conf">HUSTEF 2023</p>
+        <p class="talk-title">API First Testing Strategies</p>
+        <p class="talk-meta">Budapest, Hungary · 2023</p>
+        <a href="https://pricillabilavendran.com/my-talks/2023-2/" target="_blank" class="talk-link">Watch talk →</a>
+      </div>
+      <div class="talk-card reveal reveal-delay-1" data-year="2023">
+        <p class="talk-conf">TestBash</p>
+        <p class="talk-title">Postman for Test Engineers</p>
+        <p class="talk-meta">Online · 2023</p>
+        <a href="https://pricillabilavendran.com/my-talks/2023-2/" target="_blank" class="talk-link">Watch talk →</a>
+      </div>
+      <div class="talk-card reveal reveal-delay-2" data-year="2023">
+        <p class="talk-conf">Ministry of Testing</p>
+        <p class="talk-title">Contract Testing in Practice</p>
+        <p class="talk-meta">Online · 2023</p>
+        <a href="https://pricillabilavendran.com/my-talks/2023-2/" target="_blank" class="talk-link">Watch talk →</a>
+      </div>
+      <!-- 2022 -->
+      <div class="talk-card reveal" data-year="2022">
+        <p class="talk-conf">STeP-IN Forum 2022</p>
+        <p class="talk-title">Quality Engineering as a Mindset</p>
+        <p class="talk-meta">Bengaluru, India · 2022</p>
+        <a href="https://pricillabilavendran.com/my-talks/2022-2/" target="_blank" class="talk-link">Watch talk →</a>
+      </div>
+      <div class="talk-card reveal reveal-delay-1" data-year="2022">
+        <p class="talk-conf">Postman Galaxy</p>
+        <p class="talk-title">Community-Led Testing Culture</p>
+        <p class="talk-meta">Online · 2022</p>
+        <a href="https://pricillabilavendran.com/my-talks/2022-2/" target="_blank" class="talk-link">Watch talk →</a>
+      </div>
+      <div class="talk-card reveal reveal-delay-2" data-year="2021">
+        <p class="talk-conf">Agile Testing Days</p>
+        <p class="talk-title">Survival Guide for New Testers</p>
+        <p class="talk-meta">Online · 2021</p>
+        <a href="https://pricillabilavendran.com/my-talks/2021-2/" target="_blank" class="talk-link">Watch talk →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 06 ACHIEVEMENTS ───────────────────────────────────── -->
+<section id="achievements" class="section">
+  <div class="container">
+    <span class="section-label reveal">Recognition</span>
+    <h2 class="reveal reveal-delay-1" style="margin-bottom:3rem;">Awards &amp; milestones</h2>
+
+    <div class="stats-row reveal">
+      <div class="stat-cell">
+        <div class="stat-num">50<span>+</span></div>
+        <div class="stat-desc">Talks at conferences worldwide</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">2<span>x</span></div>
+        <div class="stat-desc">AWS Community Builder</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">10<span>+</span></div>
+        <div class="stat-desc">Years in software quality</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">∞</div>
+        <div class="stat-desc">Mentees supported globally</div>
+      </div>
+    </div>
+
+    <div class="awards-list">
+      <div class="award-item reveal">
+        <div>
+          <div class="award-name">Postman Supernova &amp; Ambassador</div>
+          <div class="award-sub">Recognised for outstanding Postman community contribution</div>
+        </div>
+        <div class="award-year">2021</div>
+      </div>
+      <div class="award-item reveal reveal-delay-1">
+        <div>
+          <div class="award-name">AWS Community Builder</div>
+          <div class="award-sub">Selected for the program for two consecutive years</div>
+        </div>
+        <div class="award-year">2021–22</div>
+      </div>
+      <div class="award-item reveal reveal-delay-1">
+        <div>
+          <div class="award-name">Globant Women That Build Award — Techfluencer</div>
+          <div class="award-sub">Nominated in the Techfluencer category</div>
+        </div>
+        <div class="award-year">2022</div>
+      </div>
+      <div class="award-item reveal reveal-delay-2">
+        <div>
+          <div class="award-name">WomenTech Awards — Mentor of the Year</div>
+          <div class="award-sub">Nominated for exceptional mentorship impact</div>
+        </div>
+        <div class="award-year">2022</div>
+      </div>
+      <div class="award-item reveal reveal-delay-2">
+        <div>
+          <div class="award-name">Postman Community Spotlight</div>
+          <div class="award-sub">Featured in Postman's official blog for community contributions</div>
+        </div>
+        <div class="award-year">2022</div>
+      </div>
+      <div class="award-item reveal reveal-delay-3">
+        <div>
+          <div class="award-name">Synapse QA — Letter of Love Contest Winner</div>
+          <div class="award-sub">Winner of the community writing contest</div>
+        </div>
+        <div class="award-year">2022</div>
+      </div>
+      <div class="award-item reveal reveal-delay-3">
+        <div>
+          <div class="award-name">Super Reads 2021 — Top 12</div>
+          <div class="award-sub">Shortlisted as one of the top 12 in Synapse QA's Super Reads</div>
+        </div>
+        <div class="award-year">2021</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 07 CONTENT HUB ───────────────────────────────────── -->
+<section id="content" class="section">
+  <div class="container">
+    <span class="section-label reveal">Content</span>
+    <h2 class="reveal reveal-delay-1" style="margin-bottom:2.5rem;">Learn from the journal</h2>
+
+    <div class="content-tabs reveal">
+      <button class="tab-btn active" onclick="switchTab('blog', this)">Blog</button>
+      <button class="tab-btn" onclick="switchTab('courses', this)">Courses</button>
+      <button class="tab-btn" onclick="switchTab('podcast', this)">Podcast</button>
+    </div>
+
+    <!-- Blog panel -->
+    <div class="tab-panel active" id="tab-blog">
+      <div class="blog-layout">
+        <a href="https://pricillabilavendran.com" target="_blank" class="blog-featured" style="display:block;">
+          <div class="blog-featured-img">
+            <span style="font-size:0.75rem;color:var(--muted);">Featured post thumbnail</span>
+          </div>
+          <div class="blog-featured-body">
+            <span class="tag">GenAI · Testing</span>
+            <h3>From Scripts to Agents: The Evolution of Testing on AWS</h3>
+            <p>How generative AI is reshaping the way we think about test automation — and what it means for quality engineers.</p>
+            <div class="read-meta">
+              <span>8 min read</span>
+              <span>March 2026</span>
+            </div>
+          </div>
+        </a>
+
+        <div class="blog-list">
+          <a href="https://pricillabilavendran.com" target="_blank" class="blog-list-item" style="display:block;">
+            <span class="tag">API Testing</span>
+            <h3>Contract Testing with Postman: A Practical Guide</h3>
+            <div class="read-meta">6 min read · Jan 2026</div>
+          </a>
+          <a href="https://pricillabilavendran.com" target="_blank" class="blog-list-item" style="display:block;">
+            <span class="tag">Career</span>
+            <h3>How I Became a Postman Supernova — My Community Journey</h3>
+            <div class="read-meta">5 min read · Nov 2025</div>
+          </a>
+          <a href="https://pricillabilavendran.com" target="_blank" class="blog-list-item" style="display:block;">
+            <span class="tag">Automation</span>
+            <h3>Stop Writing Flaky Tests: Root Causes &amp; Real Fixes</h3>
+            <div class="read-meta">7 min read · Oct 2025</div>
+          </a>
+          <a href="https://pricillabilavendran.com" target="_blank" class="blog-list-item" style="display:block;">
+            <span class="tag">AWS</span>
+            <h3>Testing Serverless Applications: Lessons Learned</h3>
+            <div class="read-meta">9 min read · Aug 2025</div>
+          </a>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:2.5rem;">
+        <a href="https://pricillabilavendran.com" target="_blank" class="btn-outline">View all posts →</a>
+      </div>
+    </div>
+
+    <!-- Courses panel -->
+    <div class="tab-panel" id="tab-courses">
+      <div class="courses-grid">
+        <div class="course-card">
+          <span class="tag">API Testing</span>
+          <h3>Postman for Beginners: Your Complete Testing Toolkit</h3>
+          <p>Learn Postman from scratch — requests, collections, environments, and automation.</p>
+          <a href="https://pricillabilavendran.com/my-courses/" target="_blank" class="contact-link">View course →</a>
+        </div>
+        <div class="course-card">
+          <span class="tag">GenAI</span>
+          <h3>PromptCraft for Test Engineers</h3>
+          <p>Hands-on workshop: use AI tools to write tests, generate data, and debug faster.</p>
+          <a href="https://pricillabilavendran.com/my-courses/" target="_blank" class="contact-link">View course →</a>
+        </div>
+        <div class="course-card">
+          <span class="tag">Career</span>
+          <h3>Breaking Into QA: A Survivor's Guide</h3>
+          <p>Everything I wish I knew when starting out — mindset, skills, and community.</p>
+          <a href="https://pricillabilavendran.com/my-courses/" target="_blank" class="contact-link">View course →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Podcast panel -->
+    <div class="tab-panel" id="tab-podcast">
+      <div style="background:rgba(240,237,232,0.03);border:1px solid var(--border);border-radius:var(--radius-lg);padding:3rem;text-align:center;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.2" style="margin:0 auto 1.5rem;"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        <h3 style="color:var(--paper);margin-bottom:0.75rem;font-family:var(--serif);">The Testing Journal Podcast</h3>
+        <p style="max-width:400px;margin:0 auto 2rem;">Listen to conversations about software quality, career growth, and community building.</p>
+        <a href="https://anchor.fm/pricilla-b" target="_blank" class="btn-primary">Listen on Anchor →</a>
+      </div>
+    </div>
+
+    <!-- newsletter -->
+    <div class="newsletter-strip reveal">
+      <div>
+        <h3>Stay in the loop</h3>
+        <p>Testing tips, talks, and articles — straight to your inbox.</p>
+      </div>
+      <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+        <input type="email" placeholder="your@email.com" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 08 CONTACT ───────────────────────────────────────── -->
+<section id="contact" class="section">
+  <div class="container">
+    <span class="section-label reveal">Work with me</span>
+    <h2 class="reveal reveal-delay-1" style="margin-bottom:3rem;">Let's do<br>something great.</h2>
+
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>Invite me to speak</h3>
+        <p>Looking for a speaker on software testing, API quality, or AI in QA? I'd love to join your conference, meetup, or podcast.</p>
+        <a href="https://www.linkedin.com/in/pricilla-bilavendran/" target="_blank" class="contact-link">Send speaking request →</a>
+      </div>
+      <div class="contact-card reveal reveal-delay-1">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Book a mentorship</h3>
+        <p>Whether you're starting out in QA or levelling up your career, I'm available for 1:1 mentoring sessions on Mentoring Club.</p>
+        <a href="https://www.mentoring-club.com/the-mentors/pricilla-belwin" target="_blank" class="contact-link">Book a session →</a>
+      </div>
+      <div class="contact-card reveal reveal-delay-2">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+        </div>
+        <h3>Collaborate</h3>
+        <p>Open to guest writing, podcast appearances, community partnerships, and anything that moves the testing conversation forward.</p>
+        <a href="https://www.linkedin.com/in/pricilla-bilavendran/" target="_blank" class="contact-link">Connect on LinkedIn →</a>
+      </div>
+    </div>
+
+    <div class="contact-bottom reveal">
+      <h2 class="contact-headline">Say <em>hello.</em></h2>
+      <p class="contact-sub">I'm always happy to connect. No ask is too small.</p>
+      <a href="https://www.linkedin.com/in/pricilla-bilavendran/" target="_blank" class="contact-email-link">Connect on LinkedIn →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ───────────────────────────────────────────── -->
+<footer>
+  <div class="container footer-inner">
+    <div style="display:flex;align-items:center;gap:0.5rem;">
+      <svg width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="22" y1="20" x2="22" y2="78" stroke="#6B21A8" stroke-width="9" stroke-linecap="round"/>
+        <path d="M22 20 Q22 20 36 20 Q52 20 52 34 Q52 48 36 48 Q29 48 22 48" stroke="#6B21A8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M22 70 Q22 80 14 80" stroke="#6B21A8" stroke-width="9" stroke-linecap="round" fill="none"/>
+        <line x1="58" y1="20" x2="58" y2="78" stroke="#E91E8C" stroke-width="9" stroke-linecap="round"/>
+        <path d="M58 20 Q58 20 70 20 Q82 20 82 32 Q82 44 70 44 Q64 44 58 44" stroke="#E91E8C" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M58 44 Q58 44 72 44 Q86 44 86 58 Q86 78 70 78 Q64 78 58 78" stroke="#E91E8C" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <p class="footer-copy">© 2026 Pricilla Bilavendran. All rights reserved.</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/pricilla-bilavendran/" target="_blank">LinkedIn</a>
+      <a href="https://twitter.com/PricillaBelwin" target="_blank">Twitter</a>
+      <a href="https://www.youtube.com/@pricillabilavendran" target="_blank">YouTube</a>
+      <a href="https://bpricilla.medium.com/" target="_blank">Medium</a>
+      <a href="https://github.com/Pricilla09" target="_blank">GitHub</a>
+      <a href="https://anchor.fm/pricilla-b" target="_blank">Podcast</a>
+      <a href="https://www.instagram.com/technuggetswithprici/" target="_blank">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── SCRIPTS ──────────────────────────────────────────── -->
+<script>
+  /* ── Scroll reveal ──────────────────────────────────── */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  /* ── Nav scroll ─────────────────────────────────────── */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  /* ── Mobile menu ────────────────────────────────────── */
+  function openMobileMenu() {
+    document.getElementById('mobileMenu').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* ── Talks year filter ──────────────────────────────── */
+  function filterTalks(year) {
+    document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelectorAll('.talk-card').forEach(card => {
+      if (year === 'all' || card.dataset.year === year) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  /* ── Content tabs ───────────────────────────────────── */
+  function switchTab(name, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + name).classList.add('active');
+  }
+
+  /* ── Newsletter ─────────────────────────────────────── */
+  function handleSubscribe(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = 'Subscribed!';
+    btn.style.background = 'var(--accent-2)';
+    setTimeout(() => {
+      btn.textContent = 'Subscribe';
+      btn.style.background = '';
+      e.target.reset();
+    }, 3000);
+  }
+
+  /* ── Initial reveal for hero ────────────────────────── */
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      document.querySelectorAll('#hero .reveal').forEach(el => el.classList.add('visible'));
+    }, 100);
+  });
+</script>
+</body>
+</html>
